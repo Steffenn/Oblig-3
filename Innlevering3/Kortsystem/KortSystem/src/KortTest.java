@@ -1,0 +1,37 @@
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
+
+public class KortTest {
+
+	public static void main(String[] args) {
+		ArrayList<Kort> reg = new ArrayList<Kort>();
+
+		Kort k1 = new Ansatt("Gerd", "Hanssen", 1234, new GregorianCalendar(1995,
+				3, 8), 896.53);
+		Kort k2 = new Gjest("Trude", "Lutt");
+		reg.add(k1);
+		reg.add(k2);
+		for (int i = 0; i < reg.size(); i++) {
+			Kort kort = (Kort) reg.get(i);
+			System.out.print(kort);
+			System.out.println("\nTest av kort: med kode 1234 er"
+					+ (kort.sjekkPin(1234) ? " gyldig" : " ugyldig"));
+			System.out.println("\nTest av kort: med kode 9999 er"
+					+ (kort.sjekkPin(9999) ? " gyldig" : " ugyldig"));
+
+		}
+
+		Ansatt a = (Ansatt) k1.clone();
+
+		System.out.println("Samme referanse? " + (a == k1));
+		System.out.println("Er de like? " + a.compareTo(k1));
+		
+		System.out.println(a.beregnBonus());
+		System.out.println(a.beregnKreditt());
+		
+		a.setNavn("Steffen Normark");
+		System.out.println(a);
+		System.out.println(k1);
+	}
+
+}
